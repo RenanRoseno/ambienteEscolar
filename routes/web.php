@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TurmaController;
+use App\Http\Controllers\EAController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::get('/', function () {
-    return view('auth/login');
+	return view('welcome');
 })->name('hom');
 
+Route::get('/redirects', [EAController::class, 'index']);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+		return view('dashboard');
+	})->name('dashboard');	
+
