@@ -6,7 +6,10 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <center>
+                            <img src="/images/1231.png" width="50" height="50">
+                            <h3 style="font-size: 12px;font-family: 'Poppins', sans-serif;">AMBIENTE ESCOLAR</h3>
+                        </center>
                     </a>
                 </div>
 
@@ -14,6 +17,21 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('frequencias') }}" :active="request()->routeIs('frequencias')">
+                        {{ __('Frequências') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes')"> 
+                        {{ __('Avaliações') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                        {{ __('Usuários') }}
+                    </x-jet-nav-link>
+                     <x-jet-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas')">
+                        {{ __('Turmas') }}
+                    </x-jet-nav-link>
+                     <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos')">
+                        {{ __('Documentos') }}
                     </x-jet-nav-link>
                 </div>
             </div>

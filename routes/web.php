@@ -15,15 +15,21 @@ use App\Http\Controllers\EAController;
 */
 
 
-
-
 Route::get('/', function () {
 	return view('welcome');
 })->name('hom');
 
-Route::get('/redirects', [EAController::class, 'index']);
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 		return view('dashboard');
 	})->name('dashboard');	
+
+Route::prefix('/ambienteEscolar')->group(function(){
+	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
+	Route::get('/avaliacoes' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
+	Route::get('/usuarios' , [EAController::class, 'usuarios'])->name('usuarios');
+	Route::get('/turmas' , [EAController::class, 'turmas'])->name('turmas');
+	Route::get('/documentos' , [EAController::class, 'documentos'])->name('documentos');
+});
+
+
 
