@@ -15,9 +15,11 @@ class EAController extends Controller
     	return view('usuarios/home');
     }
 
-     public function turmas(){
-        $turmas = Turma::all();
-    	return view('turmas/home', compact('turmas'));
+    public function turmas(){
+        $count  = Turma::all()->count();
+        $turmas = Turma::paginate(5);
+        
+        return view('turmas/home', compact('turmas'));
     }
 
     public function avaliacoes(){

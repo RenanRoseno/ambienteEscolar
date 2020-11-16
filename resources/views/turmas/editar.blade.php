@@ -37,7 +37,7 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" >
-                <center><h4>CADASTRO DE TURMAS</h4></center>
+                <center><h4>EDIÇÃO DE TURMA</h4></center>
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
