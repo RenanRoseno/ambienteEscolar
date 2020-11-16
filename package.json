@@ -24,6 +24,7 @@
         "@fortawesome/fontawesome-free": "^5.15.1",
         "bootstrap": "^4.5.3",
         "bootstrap-vue": "^2.19.0",
+        "izitoast": "^1.4.0",
         "vue": "^2.6.12"
     }
 }

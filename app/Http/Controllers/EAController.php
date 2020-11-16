@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Turma;
 
 class EAController extends Controller
 {
@@ -15,7 +16,8 @@ class EAController extends Controller
     }
 
      public function turmas(){
-    	return view('turmas/home');
+        $turmas = Turma::all();
+    	return view('turmas/home', compact('turmas'));
     }
 
     public function avaliacoes(){

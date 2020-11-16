@@ -3,16 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\EAController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 Route::get('/', function () {
@@ -20,14 +10,24 @@ Route::get('/', function () {
 })->name('hom');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-		return view('dashboard');
-	})->name('dashboard');	
+	return view('dashboard');
+})->name('dashboard');	
 
 Route::prefix('/ambienteEscolar')->group(function(){
 	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
 	Route::get('/avaliacoes' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
 	Route::get('/usuarios' , [EAController::class, 'usuarios'])->name('usuarios');
-	Route::get('/turmas' , [EAController::class, 'turmas'])->name('turmas');
+
+	Route::prefix('/turmas')->group(function(){
+		Route::get('/' , [EAController::class, 'turmas'])->name('turmas');
+		Route::get('/cadastrar', [TurmaController::class , 'cadastrar'])->name('turmas.cadastrar');
+		Route::get('/editar/{id}', [TurmaController::class , 'editar'])->name('turmas.editar');
+		Route::get('/excluir/{id}', [TurmaController::class , 'excluir'])->name('turmas.excluir');
+		Route::post('/inserir', [TurmaController::class , 'inserir'])->name('turmas.inserir');
+	});
+	
+
+
 	Route::get('/documentos' , [EAController::class, 'documentos'])->name('documentos');
 });
 

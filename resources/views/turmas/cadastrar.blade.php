@@ -28,7 +28,8 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/mensagem.js"></script>
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
@@ -36,58 +37,75 @@
 
         <!-- Page Heading -->
         <header class="bg-white shadow">
-            <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" style="margin-left: 82%">
-                
-                <button type="button" class="btn btn-success"><i class="fa fa-list"></i>&nbsp;Listar</button>
-
-                <button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Nova</button>
-                
-
+            <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" >
+                <center><h4>CADASTRO DE TURMAS</h4></center>
             </div>
-            
+
+            <div style="margin-left: 82%; margin-top: -60px;">
+                <a class="btn" href="{{ route('turmas')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
+                <a class="btn" href="{{ route('turmas.cadastrar')}}"><i class="fa fa-plus"></i>&nbsp;Nova</a>
+            </div>
+            <br>
         </header>
 
         <!-- Page Content -->
         <main>
-         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+            <div class="py-10">
+                <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                        <form method="POST" style="padding:10px;" action="{{ route('turmas.inserir')}}">
+                            @csrf
 
-                        <div>
-                            <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                            <div>
+                                <x-jet-label for="turma" value="{{ __('Turma') }}" />
+                                <x-jet-input id="turma" class="mt-1 w-full" type="text" name="turma" :value="old('turma')" required autofocus autocomplete="turma" />
+                            </div>
+
+                            <div class="mt-4 row">
+                                <div class="col">
+                                    <x-jet-label for="email" value="{{ __('Turno') }}" />
+                                    <select class="form-control" name="turno" required>
+                                        <option selected disabled>Selecione</option>
+                                        <option value="M">Manhã</option>
+                                        <option value="T">Tarde</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <x-jet-label for="email" value="{{ __('Série') }}" />
+                                    <select name="serie" class="form-control" required>
+                                     <option disabled selected>Selecione</option>
+                                     <option value="1°">1°</option>
+                                     <option value="2°">2°</option>
+                                     <option value="3°">3°</option>
+                                     <option value="4°">4°</option>
+                                     <option value="5°">5°</option>
+                                     <option value="6°">6°</option>
+                                     <option value="7°">7°</option>
+                                     <option value="8°">8°</option>
+                                     <option value="9°">9°</option>
+                                 </select>
+                             </div>
+
+                             <div class="col">
+                                <x-jet-label for="qtd_max" value="{{ __('Quantidade máxima') }}" />
+                                <x-jet-input id="qtd_max" class="mt-1" type="number " name="qtd_max" :value="old('qtd_max')" required />
+                            </div>
                         </div>
 
-                        <div class="mt-4">
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                        </div>
-
-                        <div class="mt-4">
-                            <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                        </div>
-
-                        <div class="mt-4">
-                            <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                        </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Already registered?') }}
-                            </a>
-
                             <x-jet-button class="ml-4">
-                                {{ __('Register') }}
+                                {{ __('Cadastrar') }}
                             </x-jet-button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
+        @if(session('error'))
+        <script type="text/javascript" defer>erro()</script>
+        @endif
     </main>
 </div>
 
@@ -95,5 +113,10 @@
 
 @livewireScripts
 </body>
+<script type="text/javascript">
+    $('#turma').on('keyup', (ev) => {
+        $('#turma').val($('#turma').val().toUpperCase());
+    });
+</script>
 </html>
 
