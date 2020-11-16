@@ -52,10 +52,11 @@
             <div class="py-10">
                 <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <form method="POST" style="padding:10px;" action="{{ route('turmas.inserir')}}">
+                        <form method="POST" style="padding:10px;" action="{{ route('turmas.salvar')}}">
                             @csrf
 
                             <div>
+                                <input type="hidden" name="id" value="{{$turma->id}}">
                                 <x-jet-label for="turma" value="{{ __('Turma') }}" />
                                 <x-jet-input id="turma" value="{{$turma->turma}}" class="mt-1 w-full" type="text" name="turma" required autofocus autocomplete="turma" />
                                 </div>

@@ -23,7 +23,7 @@ class TurmaController extends Controller
 		$turma->qtd_disponivel = $req->qtd_max;
 
 		if($turma->save()){
-			return redirect()->route('turmas')-> with('success', ' ');
+			return redirect()->route('turmas')->with('success', ' ');
 		}else{
 			return 0;
 		}
@@ -43,7 +43,7 @@ class TurmaController extends Controller
 		$turma->qtd_max = $req->qtd_max;
 		$turma->qtd_disponivel = $req->qtd_max;
 
-		if($turma->save()){
+		if($turma->update()){
 			return redirect()->route('turmas')-> with('success', ' ');
 		}else{
 			return redirect()->with('error', ' ');
