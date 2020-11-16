@@ -45,12 +45,12 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2"> 
-             <center><h4>LISTAGEM DE USUÁRIOS</h4></center>           
+             <center><h4>LISTAGEM DE MATÉRIAS</h4></center>           
          </div>
 
          <div style="margin-left: 82%; margin-top: -60px;">
-            <a class="btn" href="{{ route('usuarios')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
-            <a class="btn" href="#"><i class="fa fa-plus"></i>&nbsp;Novo</a>
+            <a class="btn" href="{{ route('materias')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
+            <a class="btn" href="{{ route('materias.cadastrar')}}"><i class="fa fa-plus"></i>&nbsp;Nova</a>
         </div>
     </header>
 
@@ -63,38 +63,34 @@
                 <table class="table" id="tab" >
                     <thead>
                         <th>#</th>
-                        <th>Matricula</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>Quantidade disponível</th>
+                        <th>Matéria</th>
                         <th>Ações</th>
                     </thead>
                     <tbody>
 
 
-                      
+                        @forelse($materias as $key=>$materia)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $key + 1}}</td>
+                            <td>{{$materia->materia}}</td>
                             <td>
-                                <a href="#"class="btn btn-md" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
-                                <a href="#"class="btn btn-md" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash lg"></i></a>
+                                <a class="btn btn-md" href="{{ route('materias.editar', [$materia->id])}}"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-md" href="{{ route('materias.excluir', [$materia->id])}}"><i class="fa fa-trash"></i></a>
                             </td> 
                         </tr> 
-                     
+                        @empty
+                        <tr>
+                            <td colspan="6"><center>Não há registros</center> </td>
+                        </tr>
+                        @endforelse
                     </tr>
                 </tbody>
             </table>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-            <script type="text/javascript">
 
+            <script type="text/javascript">
 
                 $(document).ready(function() {
                     $('#tab').DataTable({
@@ -106,14 +102,12 @@
                 } );
             </script>
 
-       
-
             @if(session('success'))
-            <script type="text/javascript" defer> sucesso()</script>
+                <script type="text/javascript" defer> sucesso()</script>
             @endif
 
             @if(session('error'))
-            <script type="text/javascript" defer>erro()</script>
+                <script type="text/javascript" defer>erro()</script>
             @endif
         </div>
     </div>
