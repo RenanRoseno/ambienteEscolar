@@ -50,7 +50,7 @@
 
          <div style="margin-left: 82%; margin-top: -60px;">
             <a class="btn" href="{{ route('usuarios')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
-            <a class="btn" href="#"><i class="fa fa-plus"></i>&nbsp;Novo</a>
+            <a class="btn" href="{{ route('usuarios.cadastrar')}}"><i class="fa fa-plus"></i>&nbsp;Novo</a>
         </div>
     </header>
 

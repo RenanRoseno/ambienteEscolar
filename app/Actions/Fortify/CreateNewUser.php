@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $this->createTeam($user);
+                //$this->createTeam($user);
             });
         });
     }
@@ -44,6 +44,7 @@ class CreateNewUser implements CreatesNewUsers
      * @param  \App\Models\User  $user
      * @return void
      */
+    
     protected function createTeam(User $user)
     {
         $user->ownedTeams()->save(Team::forceCreate([
