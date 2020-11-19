@@ -97,7 +97,7 @@
                                     <div class="mt-2" id="emailF">
                                         <div class="col">
                                             <x-jet-label for="email" value="{{ __('Email') }}" />
-                                            <x-jet-input id="email" class="mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" />
+                                            <x-jet-input id="email" class="mt-1 w-full" type="email" name="email" autocomplete="email" />
                                         </div>
                                     </div>
 
@@ -128,8 +128,8 @@
                                  <x-jet-input id="usuario" class="mt-1 w-full" type="text" name="usuario" :value="old('usuario')" required autofocus autocomplete="usuario" />
                              </div>
                              <div class="col">
-                                 <x-jet-label for="email" value="{{ __('Senha') }}" />
-                                 <x-jet-input id="senha" class="mt-1 w-full" type="password" name="senha" :value="old('senha')" required autofocus autocomplete="senha" />
+                                 <x-jet-label for="senha" value="{{ __('Senha') }}" />
+                                 <x-jet-input id="senha" class="mt-1 w-full" type="password" name="senha" :value="old('senha')" autocomplete="senha" />
                              </div>
                          </div>
                      </div>
