@@ -27,6 +27,7 @@ class UserController extends Controller
          $aluno->rg = $req->rg;
          $aluno->matricula = $req->matricula;
          $aluno->nome = $req->nome;
+
          $retorno = ($aluno->save()) ? 1 : 0 ;
 
          break;
@@ -45,7 +46,7 @@ class UserController extends Controller
          break;
 
      }
-
+     $user->id_usuario = Aluno::orderBy('id', 'desc')->first()->id;
      $user->email = $req->usuario;
      $user->password = Hash::make($req->senha);
      $user->name = $req->nome;

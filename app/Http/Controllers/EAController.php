@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Turma;
+use App\Models\Usuario;
+use App\Models\Professores;
+use App\Models\Aluno;
+
 
 class EAController extends Controller
 {
@@ -12,7 +16,12 @@ class EAController extends Controller
     }
 
     public function usuarios(){
-    	return view('usuarios/home');
+        $usuarios = Usuario::all();
+        $professores = Professores::all();
+        $alunos = Aluno::all();
+
+        $compact = compact('usuarios','professores', 'alunos');
+    	return view('usuarios/home', $compact);
     }
 
     public function turmas(){

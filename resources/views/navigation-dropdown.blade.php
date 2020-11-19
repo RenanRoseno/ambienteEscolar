@@ -15,6 +15,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(Auth::user()->role_id > 0 || Auth::user()->role_id == null)
+
+                    
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
@@ -24,18 +27,23 @@
                     <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes')"> 
                         {{ __('Avaliações') }}
                     </x-jet-nav-link>
+                    @if(Auth::user()->role_id >1)
+                    <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias')">
+                        {{ __('Matérias') }}
+                    </x-jet-nav-link>
+                    @endif
+                    <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos')">
+                        {{ __('Documentos') }}
+                    </x-jet-nav-link>
+                    @if(Auth::user()->role_id == 3 || Auth::user()->role_id == null )
                     <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
                         {{ __('Usuários') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas') || request()->routeIs('turmas.cadastrar')">
                         {{ __('Turmas') }}
                     </x-jet-nav-link>
-                     <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias')">
-                        {{ __('Matérias') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos')">
-                        {{ __('Documentos') }}
-                    </x-jet-nav-link>
+                    @endif
+                    @endif
                 </div>
             </div>
 
