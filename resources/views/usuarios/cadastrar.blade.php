@@ -109,7 +109,7 @@
 
                                     <div class="col mt-2" id="turmaF">
                                       <x-jet-label for="turma" value="{{ __('Turma') }}" />
-                                      <select name="turma" class="form-control">
+                                      <select name="id_turma" class="form-control">
                                           <option value="">Selecione</option>
                                           @foreach($turmas as $turma)
                                           <option value="{{$turma->id}}">{{$turma->turma}}</option>

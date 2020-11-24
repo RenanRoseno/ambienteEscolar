@@ -30,6 +30,7 @@ class UserController extends Controller
          $aluno->rg = $req->rg;
          $aluno->matricula = $req->matricula;
          $aluno->nome = $req->nome;
+         $aluno->id_turma = $req->id_turma;
 
          $retorno = ($aluno->save()) ? 1 : 0 ;
 

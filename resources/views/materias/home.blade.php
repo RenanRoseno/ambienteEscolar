@@ -64,6 +64,7 @@
                     <thead>
                         <th>#</th>
                         <th>Matéria</th>
+                        <th>Professor</th>
                         <th>Ações</th>
                     </thead>
                     <tbody>
@@ -73,10 +74,12 @@
                         <tr>
                             <td>{{ $key + 1}}</td>
                             <td>{{$materia->materia}}</td>
+                            <td>{{ $materia->professor_id}}</td>
                             <td>
                                 <a class="btn btn-md" href="{{ route('materias.editar', [$materia->id])}}"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-md" href="{{ route('materias.excluir', [$materia->id])}}"><i class="fa fa-trash"></i></a>
                             </td> 
+
                         </tr> 
                         @empty
                         <tr>

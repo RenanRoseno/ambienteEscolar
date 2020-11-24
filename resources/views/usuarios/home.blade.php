@@ -67,7 +67,9 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Tipo</th>
+                        
                         <th>Ações</th>
+
                     </thead>
                     <tbody>
                         @forelse($usuarios as $key => $usuario)
