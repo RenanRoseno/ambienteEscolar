@@ -75,7 +75,7 @@
                         @forelse($usuarios as $key => $usuario)
                         <tr>
                             <td>{{$key+1}}</td>
-                            <td>-</td>
+                            <td>{{$usuario->matricula}}</td>
                             <td>{{$usuario->name}}</td>
                             <td>{{$usuario->email}}</td>
                             <td>{{$usuario->role_id}}</td>

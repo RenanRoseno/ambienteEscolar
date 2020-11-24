@@ -13,7 +13,10 @@ class UserController extends Controller
 {
     public function cadastrar(){
         $turmas = Turma::all();
-        $compact = compact('turmas');
+        $matricula = date("Y").Aluno::orderBy('id', 'DESC')->first()->id;
+        
+
+        $compact = compact('turmas', 'matricula');
     	return view('usuarios/cadastrar', $compact);
     }
 

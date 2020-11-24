@@ -83,7 +83,7 @@
                                 </div>
                                 <div id="matricula" class="col">
                                     <x-jet-label for="matricula" value="{{ __('Matricula') }}" />
-                                    <x-jet-input id="matricula" class="mt-1 w-full" type="text" name="matricula"/>
+                                    <x-jet-input id="matricula" class="mt-1 w-full" type="text" name="matricula" value="{{ $matricula }}" readonly/>
                                 </div>
                             </div>
                             <div id="cadastro">
