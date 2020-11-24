@@ -5,6 +5,7 @@ use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EAController;
+use App\Http\Controllers\AvaliacaoController;
 
 
 Route::get('/', function () {
@@ -17,8 +18,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::prefix('/ambienteEscolar')->group(function(){
 	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
-	Route::get('/avaliacoes' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
 	
+	
+	Route::prefix('/avaliacoes')->group(function(){
+		Route::get('/' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
+		Route::get('/cadastrar', [AvaliacaoController::class , 'cadastrar'])->name('avaliacoes.cadastrar');
+		Route::get('/listar', [AvaliacaoController::class , 'listar'])->name('avaliacoes.listar');
+		Route::get('/editar/{id}', [AvaliacaoController::class , 'editar'])->name('avaliacoes.editar');
+		Route::get('/excluir/{id}', [AvaliacaoController::class , 'excluir'])->name('avaliacoes.excluir');
+		Route::post('/inserir', [AvaliacaoController::class , 'inserir'])->name('avaliacoes.inserir');
+		Route::post('/salvar', [AvaliacaoController::class , 'salvar'])->name('avaliacoes.salvar');
+	});
+
+
 
 	Route::prefix('/turmas')->group(function(){
 		Route::get('/' , [EAController::class, 'turmas'])->name('turmas');
