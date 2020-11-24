@@ -105,6 +105,18 @@
                                       <x-jet-label for="telefone" value="{{ __('Telefone') }}" />
                                       <x-jet-input id="telefone" class="mt-1 w-full" type="text" name="telefone" :value="old('telefone')" required autofocus autocomplete="telefone" />
                                   </div>
+
+
+                                    <div class="col mt-2" id="turmaF">
+                                      <x-jet-label for="turma" value="{{ __('Turma') }}" />
+                                      <select name="turma" class="form-control">
+                                          <option value="">Selecione</option>
+                                          @foreach($turmas as $turma)
+                                          <option value="{{$turma->id}}">{{$turma->turma}}</option>
+                                          @endforeach
+                                      </select>
+                                  </div>
+
                               </div>
 
                               <div class="mt-4 row">
@@ -163,6 +175,7 @@
     console.log('OK');
     $('#cadastro').hide();
     $('#matricula').hide();
+    $('#turmaF').hide();
     $('#tipo').change(function(){
 
         let delay = 500;
@@ -173,11 +186,13 @@
 
             $('#cadastro').show(delay);
             $('#matricula').show(delay);
+            $('#turmaF').show();
             $('#emailF').hide(delay);
             break;
 
             case '2': 
             $('#matricula').hide(delay);
+            $('#turmaF').hide();
             $('#cadastro').show(delay);
             $('#emailF').show(delay);
             break;
@@ -185,6 +200,7 @@
             case '3':
             $('#matricula').hide(delay);
             $('#cadastro').show(delay);
+            $('#turmaF').hide();
             $('#emailF').show(delay);
             break;
 

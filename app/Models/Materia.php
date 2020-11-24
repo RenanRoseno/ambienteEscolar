@@ -10,5 +10,5 @@ class Materia extends Model
     use HasFactory;
     
     protected $table = 'materias';
-    protected $fillable = ['id','materia'];
+    protected $fillable = ['id','materia', 'professor_id'];
 }

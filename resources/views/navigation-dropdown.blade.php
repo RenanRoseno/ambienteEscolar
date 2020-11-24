@@ -27,7 +27,7 @@
                     <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes')"> 
                         {{ __('Avaliações') }}
                     </x-jet-nav-link>
-                    @if(Auth::user()->role_id >1)
+                    @if(Auth::user()->role_id > 1 || Auth::user()->role_id == null )
                     <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias')">
                         {{ __('Matérias') }}
                     </x-jet-nav-link>

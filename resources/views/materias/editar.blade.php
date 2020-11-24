@@ -56,10 +56,25 @@
                             @csrf
 
                             <div>
-                            
+
                                 <input type="hidden" name="id" value="{{ $materia->id }}">
                                 <x-jet-label for="materia" value="{{ __('Matéria') }}" />
                                 <x-jet-input id="materia" value="{{$materia->materia}}" class="mt-1 w-full" type="text" name="materia" required autofocus autocomplete="materia" />
+                                </div>
+
+
+                                <div>
+                                    <x-jet-label for="professor" value="{{ __('Professor') }}" />
+                                    <select name="professor_id" id="professor" class="form-control">
+                                        <option>Selecione</option>
+                                        @foreach($professores as $professor)
+                                        @if($professor->id == $materia->professor_id)
+                                        <option value="{{$professor->id}}" selected>{{$professor->nome}}</option>
+                                        @else
+                                        <option value="{{$professor->id}}">{{$professor->nome}}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="flex items-center justify-end mt-4">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Materia;
+use App\Models\Professores;
 
 class MateriaController extends Controller
 {
@@ -14,11 +15,18 @@ class MateriaController extends Controller
 
 
     public function cadastrar(){
-    	return view('materias/cadastrar');
+        $professores = Professores::all();
+    
+        $compact = compact('professores');
+
+    	return view('materias/cadastrar', $compact);
     }
 
     public function inserir(Request $req){
-    	$materia = Materia::create($req->all());
+    	
+
+        $materia = Materia::create($req->all());
+
     	
     	if($materia){
     		return redirect()->route('materias')->with('success', ' ');
@@ -28,8 +36,10 @@ class MateriaController extends Controller
     }
 
     public function editar($id){
-    	$materia = Materia::find($id);
-    	return view('materias/editar', compact('materia'));
+    	$professores = Professores::all();
+        $materia = Materia::find($id);
+
+    	return view('materias/editar', compact('materia','professores'));
     }
 
     public function excluir($id){

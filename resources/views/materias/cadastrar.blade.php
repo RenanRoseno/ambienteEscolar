@@ -61,6 +61,15 @@
                                 <x-jet-input id="materia" class="mt-1 w-full" type="text" name="materia" :value="old('materia')" required autofocus autocomplete="materia" />
                             </div>
 
+                            <div>
+                                <x-jet-label for="professor" value="{{ __('Professor') }}" />
+                                <select name="professor_id" id="professor" class="form-control">
+                                    <option>Selecione</option>
+                                    @foreach($professores as $professor)
+                                    <option value="{{$professor->id}}">{{$professor->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-jet-button class="ml-4">

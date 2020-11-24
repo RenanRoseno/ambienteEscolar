@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use App\Models\Aluno;
+use App\Models\Turma;
 use App\Models\Professores;
 
 class UserController extends Controller
 {
     public function cadastrar(){
-    	return view('usuarios/cadastrar');
+        $turmas = Turma::all();
+        $compact = compact('turmas');
+    	return view('usuarios/cadastrar', $compact);
     }
 
     public function inserir(Request $req, Usuario $user){
