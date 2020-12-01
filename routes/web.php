@@ -5,6 +5,7 @@ use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EAController;
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AvaliacaoController;
 
 
@@ -18,7 +19,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::prefix('/ambienteEscolar')->group(function(){
 	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
-	
+	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
 	
 	Route::prefix('/avaliacoes')->group(function(){
 		Route::get('/' , [EAController::class, 'avaliacoes'])->name('avaliacoes');

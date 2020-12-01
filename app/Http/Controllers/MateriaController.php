@@ -10,7 +10,9 @@ class MateriaController extends Controller
 {
     public function home(){
     	$materias = Materia::all();
-    	return view('materias/home', compact('materias'));
+        $professores = Professores::all();
+
+    	return view('materias/home', compact('materias', 'professores'));
     }
 
 

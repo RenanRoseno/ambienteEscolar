@@ -45,10 +45,10 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2"> 
-             <center><h4>LISTAGEM DE MATÉRIAS</h4></center>           
-         </div>
+               <center><h4>LISTAGEM DE MATÉRIAS</h4></center>           
+           </div>
 
-         <div style="margin-left: 82%; margin-top: -60px;">
+           <div style="margin-left: 82%; margin-top: -60px;">
             <a class="btn" href="{{ route('materias')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
             <a class="btn" href="{{ route('materias.cadastrar')}}"><i class="fa fa-plus"></i>&nbsp;Nova</a>
         </div>
@@ -57,7 +57,7 @@
     <!-- Page Content -->
     <main>
 
-     <div class="py-12" id='content' >
+       <div class="py-12" id='content' >
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg" style="padding: 20px;">
                 <table class="table" id="tab" >
@@ -74,7 +74,14 @@
                         <tr>
                             <td>{{ $key + 1}}</td>
                             <td>{{$materia->materia}}</td>
-                            <td>{{ $materia->professor_id}}</td>
+                            <td>
+                                @foreach($professores as $professor)
+                                @if($professor->id == $materia->professor_id)
+                                {{ $professor->nome }}
+                                <?ṕhp break; ?>
+                                @endif
+                                @endforeach
+                            </td>
                             <td>
                                 <a class="btn btn-md" href="{{ route('materias.editar', [$materia->id])}}"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-md" href="{{ route('materias.excluir', [$materia->id])}}"><i class="fa fa-trash"></i></a>
@@ -106,11 +113,11 @@
             </script>
 
             @if(session('success'))
-                <script type="text/javascript" defer> sucesso()</script>
+            <script type="text/javascript" defer> sucesso()</script>
             @endif
 
             @if(session('error'))
-                <script type="text/javascript" defer>erro()</script>
+            <script type="text/javascript" defer>erro()</script>
             @endif
         </div>
     </div>
