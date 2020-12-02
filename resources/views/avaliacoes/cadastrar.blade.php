@@ -52,7 +52,7 @@
             <div class="py-10">
                 <div class="max-w-6xl mx-auto sm:px-6 lg:px-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <form method="POST" style="padding:10px;" action="{{ route('materias.inserir')}}">
+                        <form method="POST" style="padding:10px;" action="{{ route('avaliacoes.salvar')}}">
                             @csrf
 
                             <div class="row">
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Turma') }}" />
-                                    <select name="professor_id" id="turma" class="form-control">
+                                    <select name="turma" id="turma" class="form-control">
                                         <option>Selecione</option>
                                         @foreach($turmas as $turma)
                                         <option value="{{$turma->id}}">{{$turma->turma}}</option>
@@ -77,7 +77,7 @@
 
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Periodo') }}" />
-                                    <select name="professor_id" id="periodo" class="form-control">
+                                    <select name="periodo" id="periodo" class="form-control">
                                         <option>Selecione</option>
                                         @foreach($periodos as $periodo)
                                         <option value="{{$periodo->bimestre}}">{{$periodo->bimestre}}° bimestre</option>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Prova') }}" />
-                                    <select name="professor_id" id="prova" class="form-control">
+                                    <select name="prova" id="prova" class="form-control">
                                         <option>Selecione</option>
                                         <option value="n1">N1</option>
                                         <option value="n2">N2</option>
@@ -185,7 +185,7 @@
             cols += '<td>' + (i+1) + '</td>';
             cols += '<td>' + response[i].matricula + '</td>';
             cols += '<td>' + response[i].nome + '</td>';
-            cols += '<td>' +"<input type='numer' class='form-control' style='border:1px solid gray; width:70px;' name='"+response[i].nome+ " id='"+response[i].nome+"'" +'</td></tr>';
+            cols += '<td>' +"<input type='numer' class='form-control' style='border:1px solid gray; width:70px;' name='"+response[i].matricula+"' id='"+response[i].matricula+"'" +'</td></tr>';
 
             newRow.append(cols);
 
