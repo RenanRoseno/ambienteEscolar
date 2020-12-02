@@ -14,6 +14,11 @@ use App\Models\Professores;
 
 class AvaliacaoController extends Controller
 {
+    public function getAvaliacoes($turma, $periodo, $materia){
+        $avaliacoes = Avaliacao::where('id_turma', $turma)->where('id_periodo', $periodo)->where('id_materia', $materia)->get();
+        return $avaliacoes;
+
+    }
     public function cadastrar(){
     	$materias = Materia::all();
     	$turmas = Turma::all();
@@ -24,7 +29,13 @@ class AvaliacaoController extends Controller
     }
 
     public function listar(){
-    	return view('avaliacoes/listar');
+        $materias = Materia::all();
+        $turmas = Turma::all();
+        $periodos = Periodo::all();
+        $compact = compact('turmas', 'materias', 'periodos');
+
+    	return view('avaliacoes/listar', $compact);
+
     }
 
     public function salvar(Request $req){

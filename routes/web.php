@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('/ambienteEscolar')->group(function(){
 	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
 	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
+	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}' , [AvvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
 	
 	Route::prefix('/avaliacoes')->group(function(){
 		Route::get('/' , [EAController::class, 'avaliacoes'])->name('avaliacoes');

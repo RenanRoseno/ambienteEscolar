@@ -38,7 +38,7 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" >
-                <center><h4>REGISTRAR NOTAS</h4></center>
+                <center><h4>LISTAR NOTAS</h4></center>
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
@@ -50,93 +50,90 @@
         <!-- Page Content -->
         <main>
             <div class="py-10">
-                <div class="max-w-2xl mx-auto sm:px-6 lg:px-1">
+                <div class="max-w-6xl mx-auto sm:px-6 lg:px-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <form method="POST" style="padding:10px;" action="{{ route('materias.inserir')}}">
+                        <form method="POST" style="padding:10px;" action="{{ route('avaliacoes.salvar')}}">
                             @csrf
 
                             <div class="row">
                                 <div class="col">
-                                    <x-jet-label for="turmas" value="{{ __('Materia') }}" />
-                                    <select name="professor_id" id="professor" class="form-control">
+                                    <x-jet-label for="materia" value="{{ __('Materia') }}" />
+                                    <select name="materia" id='materia' class="form-control">
                                         <option>Selecione</option>
-
+                                        @foreach($materias as $materia)
+                                        <option value="{{$materia->id}}">{{$materia->materia}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Turma') }}" />
-                                    <select name="professor_id" id="professor" class="form-control">
+                                    <select name="turma" id="turma" class="form-control">
                                         <option>Selecione</option>
-
+                                        @foreach($turmas as $turma)
+                                        <option value="{{$turma->id}}">{{$turma->turma}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row mt-3">
+
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Periodo') }}" />
-                                    <select name="professor_id" id="professor" class="form-control">
+                                    <select name="periodo" id="periodo" class="form-control">
                                         <option>Selecione</option>
-
+                                        @foreach($periodos as $periodo)
+                                        <option value="{{$periodo->bimestre}}">{{$periodo->bimestre}}° bimestre</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Prova') }}" />
-                                    <select name="professor_id" id="professor" class="form-control">
+                                    <select name="prova" id="prova" class="form-control">
                                         <option>Selecione</option>
+                                        <option value="n1">N1</option>
+                                        <option value="n2">N2</option>
+                                        <option value="n3">N3</option>
+                                        <option value="n4">N4</option>
+                                        <option value="n5">N5</option>
+                                        <option value="n6">N6</option>
+                                        <option value="n7">N7</option>
+                                        <option value="n8">N8</option>
+                                        <option value="n9">N9</option>
+                                        <option value="n10">N10</option>
+                                        <option value="recuperacao">Recuperação</option>
 
                                     </select>
                                 </div>
                             </div>
                             <div id="tabela">
-                              <table class="table" id="tab" >
+                              <table class="table mt-2">
                                 <thead>
                                     <th>#</th>
                                     <th>Matricula</th>
                                     <th>Aluno</th>
                                     <th>Nota</th>
-                                    <th>Situação</th>
-                                    <th colspan="3"></th>
+                                    <!--th>Situação</th-->
+                                    <!--th colspan="3"></th-->
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>
-                                            <button><i class="fa fa-check"></i></button>
-                                        </td>
-                                        <td>
-                                            <button><i class="fa fa-edit"></i></button>
-                                        </td>
-                                        <td>
-                                            <button><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr> 
-
-                                    <!--tr>
-                                        <td colspan="5"> Não há registros</td>
-                                    </tr-->
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="flex items-center justify-end mt-4">
-                        <x-jet-button class="ml-4">
-                            {{ __('Cadastrar') }}
-                        </x-jet-button>
-                    </div>
-                </form>
+                                <tbody id="tab">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex items-center justify-end mt-4">
+                            <x-jet-button class="ml-4">
+                                {{ __('Cadastrar') }}
+                            </x-jet-button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    @if(session('error'))
-    <script type="text/javascript" defer>erro()</script>
-    @endif
-</main>
+        @if(session('error'))
+        <script type="text/javascript" defer>erro()</script>
+        @endif
+        @if(session('success'))
+        <script type="text/javascript" defer>sucessos()</script>
+        @endif
+    </main>
 </div>
 
 @stack('modals')
@@ -147,6 +144,57 @@
     $('#materia').on('keyup', (ev) => {
         $('#materia').val($('#materia').val().toUpperCase());
     });
+
+    $(document).ready(function(){
+      $('#tabela').hide();  
+  })
+
+    $("#prova").change(function(){
+        console.log('aq');
+        console.log($("#materia").val());
+        console.log($('#turma').val());
+        console.log($('#periodo').val());
+        if( $("#materia").val() == 'Selecione' || $('#turma').val() == 'Selecione' || $('#periodo').val() == 'Selecione' || $('#prova').val() == 'Selecione'){
+            console.log('aq12');
+        }else{
+            carregaAlunos($('#turma').val());
+            //$('#tabela').reload();
+            $('#tabela').show(500);
+        }
+    });
+
+    function carregaAlunos(turma){
+        $.ajax({
+            url: '/ambienteEscolar/getAvaliacoes/' + turma +'/'+ periodo+'/'+ materia,
+            type: 'GET',
+            success: function(response){
+                console.log(response.length);
+                insereValores(response);
+            },
+            error:function(response){
+                console.log(0);
+                console.log(response);
+            }
+        })
+
+    }
+
+    function insereValores(response){
+        $('#tab').empty();
+        for(let i = 0; i < response.length; i++)
+        {
+            var newRow = $("<tr>");
+            var cols = "";
+            cols += '<td>' + (i+1) + '</td>';
+            cols += '<td>' + response[i].id_turma + '</td>';
+            cols += '<td>' + response[i].id_aluno + '</td></tr>';
+
+            newRow.append(cols);
+
+            $("#tab").append(newRow);
+
+        }
+    }
 </script>
 </html>
 
