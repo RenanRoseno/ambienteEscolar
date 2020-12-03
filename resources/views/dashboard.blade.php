@@ -28,12 +28,12 @@
             <div class="row">
               <div class="col col-md-7 text-justify">
                 <h1 style="font-size: 30px;font-family: 'Poppins', sans-serif;">AMBIENTE ESCOLAR</h1><br>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p><br>
+                <p>A plataforma pedagógica escolar tem o objetivo de orientar e servir como apoio pedagógico diário a pais, alunos e professores.</p><br>
                 Equipe:
                 <ul type="circle">
-                  <li>Silvia Helena </li>
-                  <li>Helena</li>
-                  <li>Helena</li>
+                  <li>Lidiane Ferreira dos Santos</li>
+                  <li>Renata Claziela Monteiro</li>
+                  <li>Silvia Helena Pimenta Medonça</li>
                 </ul>
               </div>
               <div class="col col-md-5">

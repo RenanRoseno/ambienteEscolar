@@ -12,7 +12,7 @@ use App\Http\Controllers\DocumentosController;
 
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('auth/login');
 })->name('hom');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

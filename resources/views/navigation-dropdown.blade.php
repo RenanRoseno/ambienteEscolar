@@ -22,23 +22,23 @@
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('frequencias') }}" :active="request()->routeIs('frequencias')">
+                    <x-jet-nav-link href="{{ route('frequencias') }}" :active="request()->routeIs('frequencias') || request()->routeIs('frequencias.cadastrar')">
                         {{ __('Frequências') }}
                     </x-jet-nav-link>
                     
-                    <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes')"> 
+                    <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes') || request()->routeIs('avaliacoes.cadastrar') || request()->routeIs('avaliacoes.listar')"> 
                         {{ __('Avaliações') }}
                     </x-jet-nav-link>
                     @if(Auth::user()->role_id > 1 || Auth::user()->role_id == null )
-                    <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias')">
+                    <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias') || request()->routeIs('materias.cadastrar')">
                         {{ __('Matérias') }}
                     </x-jet-nav-link>
                     @endif
-                    <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos')">
+                    <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos') || request()->routeIs('documentos.cadastrar')">
                         {{ __('Documentos') }}
                     </x-jet-nav-link>
                     @if(Auth::user()->role_id == 3 || Auth::user()->role_id == null )
-                    <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                    <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios') || request()->routeIs('usuarios.cadastrar')">
                         {{ __('Usuários') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas') || request()->routeIs('turmas.cadastrar')">
@@ -121,6 +121,8 @@
         <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
         </x-jet-responsive-nav-link>
+
+q        
     </div>
 
     <!-- Responsive Settings Options -->
