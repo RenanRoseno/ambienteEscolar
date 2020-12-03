@@ -15,7 +15,7 @@ use App\Models\Professores;
 class AvaliacaoController extends Controller
 {
     public function getAvaliacoes($turma, $periodo, $materia){
-        $avaliacoes = Avaliacao::where('id_turma', $turma)->where('id_periodo', $periodo)->where('id_materia', $materia)->get();
+        $avaliacoes = Avaliacao::where('id_periodo', $periodo)->where('id_materia', $materia)->get();
         return $avaliacoes;
 
     }

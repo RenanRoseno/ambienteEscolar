@@ -80,7 +80,7 @@
                                     <select name="periodo" id="periodo" class="form-control">
                                         <option>Selecione</option>
                                         @foreach($periodos as $periodo)
-                                        <option value="{{$periodo->bimestre}}">{{$periodo->bimestre}}° bimestre</option>
+                                        <option value="{{$periodo->id}}">{{$periodo->bimestre}}° bimestre</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -157,13 +157,13 @@
         if( $("#materia").val() == 'Selecione' || $('#turma').val() == 'Selecione' || $('#periodo').val() == 'Selecione' || $('#prova').val() == 'Selecione'){
             console.log('aq12');
         }else{
-            carregaAlunos($('#turma').val());
+            carregaAlunos($('#turma').val(), $('#periodo').val() , $('#materia').val());
             //$('#tabela').reload();
             $('#tabela').show(500);
         }
     });
 
-    function carregaAlunos(turma){
+    function carregaAlunos(turma, periodo, materia){
         $.ajax({
             url: '/ambienteEscolar/getAvaliacoes/' + turma +'/'+ periodo+'/'+ materia,
             type: 'GET',
@@ -186,7 +186,7 @@
             var newRow = $("<tr>");
             var cols = "";
             cols += '<td>' + (i+1) + '</td>';
-            cols += '<td>' + response[i].id_turma + '</td>';
+            cols += '<td>' + response[i].id + '</td>';
             cols += '<td>' + response[i].id_aluno + '</td></tr>';
 
             newRow.append(cols);

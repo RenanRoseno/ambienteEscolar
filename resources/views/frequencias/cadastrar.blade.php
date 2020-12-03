@@ -52,13 +52,13 @@
             <div class="py-10">
                 <div class="max-w-6xl mx-auto sm:px-6 lg:px-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <form method="POST" style="padding:10px;" action="{{ route('avaliacoes.salvar')}}">
+                        <form method="POST" style="padding:10px;" action="{{ route('frequencias.salvar')}}">
                             @csrf
 
                             <div class="row">
                                 <div class="col">
-                                    <x-jet-label for="mes" value="{{ __('Data') }}" />
-                                    <input type="text" name="cadastrar" class="form-control">
+                                    <x-jet-label for="data" value="{{ __('Data') }}" />
+                                    <input type="date" name="data" id="data" class="form-control">
                                 </div>
 
                                 <div class="col">
@@ -117,12 +117,9 @@
   })
 
     $("#turma").change(function(){
-        console.log('aq');
-        console.log($("#materia").val());
-        console.log($('#turma').val());
-        console.log($('#periodo').val());
-        if( $("#materia").val() == 'Selecione' || $('#turma').val() == 'Selecione' || $('#periodo').val() == 'Selecione' || $('#prova').val() == 'Selecione'){
-            console.log('aq12');
+        
+        if($('#turma').val() == 'Selecione'|| $('#data').val() == ''){
+            
         }else{
             carregaAlunos($('#turma').val());
             //$('#tabela').reload();

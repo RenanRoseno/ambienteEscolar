@@ -28,7 +28,8 @@
             <div class="row">
               <div class="col col-md-7 text-justify">
                 <h1 style="font-size: 30px;font-family: 'Poppins', sans-serif;">AMBIENTE ESCOLAR</h1><br>
-                <p>A plataforma pedagógica escolar tem o objetivo de orientar e servir como apoio pedagógico diário a pais, alunos e professores.</p><br>
+                <p>A Tecnologia Educacional é um conceito que diz respeito à utilizaçãp de recursos tecnológicos para fins pedagógicos. Seu objetivo é trazer para a educação - seja dentro ou fora de sala de aula - práticas inovadoras, que facilitem e potencializem o processo de ensino de aprendizagem. O uso da TE tem sido amplamente discutido no meio acadêmico, na mídia e nos circulos sociais , espaços onde nem sempre é bem recebido. As maiores críticas dizem respeito à sua relação com o papel da escola e do professor e à dificuldade de acesso à tecnologia, especialmente nas escolas da rede pública e entre estudantes com menor renda familiar.
+                A plataforma pedagógica escolar tem o objetivo de orientar e servir como apoio pedagógico diário a pais, alunos e professores.</p><br>
                 Equipe:
                 <ul type="circle">
                   <li>Lidiane Ferreira dos Santos</li>
