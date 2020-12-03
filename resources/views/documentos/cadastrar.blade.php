@@ -38,7 +38,7 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" >
-                <center><h4>LISTAR DOCUMENTOS</h4></center>
+                <center><h4>UPLOAD DE DOCUMENTOS</h4></center>
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
@@ -53,13 +53,13 @@
             <div class="py-10">
                 <div class="max-w-6xl mx-auto sm:px-6 lg:px-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <form method="POST" style="padding:10px;" action="{{ route('avaliacoes.salvar')}}">
+                        <form method="POST" style="padding:10px;" action="{{ route('avaliacoes.salvar')}}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
                                 <div class="col">
-                                    <x-jet-label for="mes" value="{{ __('Data') }}" />
-                                    <input type="text" name="cadastrar" class="form-control">
+                                    <x-jet-label for="mes" value="{{ __('Arquivo') }}" />
+                                    <input type="file" name="cadastrar" class="form-control">
                                 </div>
 
                                 <div class="col">

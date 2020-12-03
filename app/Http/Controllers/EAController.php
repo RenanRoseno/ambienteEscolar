@@ -37,11 +37,14 @@ class EAController extends Controller
 
 
     public function frequencias(){
-    	return view('frequencias/home');
+        $turmas = Turma::all();
+
+    	return view('frequencias/home', compact('turmas'));
     }
 
 
     public function documentos(){
-    	return view('documentos/home');
+        $turmas = Turma::all();
+    	return view('documentos/home', compact('turmas'));
     }
 }

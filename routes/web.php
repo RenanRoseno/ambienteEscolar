@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EAController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\FrequenciaController;
+use App\Http\Controllers\DocumentosController;
 
 
 Route::get('/', function () {
@@ -18,10 +20,30 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');	
 
 Route::prefix('/ambienteEscolar')->group(function(){
-	Route::get('/frequencias' , [EAController::class, 'frequencias'])->name('frequencias');
+	
 	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
 	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}' , [AvvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
-	
+
+	Route::prefix('/frequencias')->group(function(){
+		Route::get('/' , [EAController::class, 'frequencias'])->name('frequencias');
+		Route::get('/cadastrar', [FrequenciaController::class , 'cadastrar'])->name('frequencias.cadastrar');
+		Route::get('/listar', [FrequenciaController::class , 'listar'])->name('frequencias.listar');
+		Route::get('/editar/{id}', [FrequenciaController::class , 'editar'])->name('frequencias.editar');
+		Route::get('/excluir/{id}', [FrequenciaController::class , 'excluir'])->name('frequencias.excluir');
+		Route::post('/inserir', [FrequenciaController::class , 'inserir'])->name('frequencias.inserir');
+		Route::post('/salvar', [FrequenciaController::class , 'salvar'])->name('frequencias.salvar');
+	});
+
+	Route::prefix('/documentos')->group(function(){
+		Route::get('/' , [EAController::class, 'frequencias'])->name('frequencias');
+		Route::get('/cadastrar', [DocumentosController::class , 'cadastrar'])->name('documentos.cadastrar');
+		Route::get('/listar', [DocumentosController::class , 'listar'])->name('documentos.listar');
+		Route::get('/editar/{id}', [DocumentosController::class , 'editar'])->name('documentos.editar');
+		Route::get('/excluir/{id}', [DocumentosController::class , 'excluir'])->name('documentos.excluir');
+		Route::post('/inserir', [DocumentosController::class , 'inserir'])->name('documentos.inserir');
+		Route::post('/salvar', [DocumentosController::class , 'salvar'])->name('documentos.salvar');
+	});
+
 	Route::prefix('/avaliacoes')->group(function(){
 		Route::get('/' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
 		Route::get('/cadastrar', [AvaliacaoController::class , 'cadastrar'])->name('avaliacoes.cadastrar');

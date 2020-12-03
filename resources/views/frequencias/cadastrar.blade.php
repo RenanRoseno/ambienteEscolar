@@ -38,12 +38,11 @@
         <!-- Page Heading -->
         <header class="bg-white shadow">
             <div class="max-w-7xl py-6 px-4 sm:px-6 lg:px-2" >
-                <center><h4>LISTAR DOCUMENTOS</h4></center>
+                <center><h4>REGISTRAR FREQUÊNCIA</h4></center>
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
-                <a class="btn" href="{{ route('documentos')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
-                <a class="btn" href="{{ route('documentos.cadastrar')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
+                <a class="btn" href="{{ route('frequencias')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
             </div>
             <br>
         </header>
