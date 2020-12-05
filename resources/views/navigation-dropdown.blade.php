@@ -34,9 +34,6 @@
                         {{ __('Matérias') }}
                     </x-jet-nav-link>
                     @endif
-                    <x-jet-nav-link href="{{ route('documentos') }}" :active="request()->routeIs('documentos') || request()->routeIs('documentos.cadastrar')">
-                        {{ __('Documentos') }}
-                    </x-jet-nav-link>
                     @if(Auth::user()->role_id == 3 || Auth::user()->role_id == null )
                     <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios') || request()->routeIs('usuarios.cadastrar')">
                         {{ __('Usuários') }}

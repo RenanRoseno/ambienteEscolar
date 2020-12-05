@@ -20,7 +20,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');	
 
 Route::prefix('/ambienteEscolar')->group(function(){
-	
+
+	Route::get('/getFrequencias/{turma}/{mes}/{ano}' , [FrequenciaController::class, 'getFrequencias'])->name('getFrequencias');
 	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
 	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}' , [AvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
 
@@ -53,7 +54,6 @@ Route::prefix('/ambienteEscolar')->group(function(){
 		Route::post('/inserir', [AvaliacaoController::class , 'inserir'])->name('avaliacoes.inserir');
 		Route::post('/salvar', [AvaliacaoController::class , 'salvar'])->name('avaliacoes.salvar');
 	});
-
 
 
 	Route::prefix('/turmas')->group(function(){
