@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::prefix('/ambienteEscolar')->group(function(){
 
-	Route::get('/getFrequencias/{turma}/{mes}/{ano}' , [FrequenciaController::class, 'getFrequencias'])->name('getFrequencias');
+	Route::get('/getFrequencias/{turma}/{ano}/{data}' , [FrequenciaController::class, 'getFrequencias'])->name('getFrequencias');
 	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
 	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}' , [AvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
 

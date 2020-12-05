@@ -12,10 +12,11 @@ use App\Models\Frequencia;
 
 class FrequenciaController extends Controller
 {	
-	public function getFrequencias($turma, $mes, $ano){
+	public function getFrequencias($turma, $ano, $data){
 
-		$mes = $mes < 10 ? "0".$mes : $mes;
-		$frequencias = Frequencia::where('data', 'LIKE', '____-'.$mes.'-__')->get();
+		
+		$frequencias = Frequencia::where('data', 'like', '%'.$data.'%')->get();
+
 		$alunos = Aluno::where('id_turma', $turma)->get();
 
 		return compact('frequencias', 'alunos');

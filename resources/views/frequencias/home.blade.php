@@ -68,6 +68,11 @@
                                 </div>
 
                                 <div class="col">
+                                    <x-jet-label for="data" value="{{ __('Data') }}" />
+                                    <input type="date" name="data" id='data' class="form-control">
+                                </div>
+
+                                <!--div class="col">
                                     <x-jet-label for="mes" value="{{ __('Mês') }}" />
                                     <select name="mes" id="mes" class="form-control">
                                         <option>Selecione</option>
@@ -82,11 +87,12 @@
                                         <option value="09">Setembro</option>
                                         <option value="10">Outubro</option>
                                         <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
                                     </select>
-                                </div>
+                                </div-->
                                 <div class="col">
                                     <x-jet-label for="turmas" value="{{ __('Ano') }}" />
-                                    <select name="prova" id="prova" class="form-control">
+                                    <select name="ano" id="ano" class="form-control">
                                         <option>Selecione</option>
                                         <option value="2020">2020</option>
 
@@ -99,8 +105,9 @@
                                     <th>#</th>
                                     <th>Matricula</th>
                                     <th>Aluno</th>
-                                    <th>Data</th>
+                                    <!--th>Data</th-->
                                     <th>Situação</th>
+                                    
                                     <!--th>Situação</th-->
                                     <!--th colspan="3"></th-->
                                 </thead>
@@ -108,11 +115,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="flex items-center justify-end mt-4">
-                            <x-jet-button class="ml-4">
-                                {{ __('Cadastrar') }}
-                            </x-jet-button>
-                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -128,6 +131,7 @@
 
 @livewireScripts
 </body>
+
 <script type="text/javascript">
     $('#materia').on('keyup', (ev) => {
         $('#materia').val($('#materia').val().toUpperCase());
@@ -137,26 +141,28 @@
       $('#tabela').hide();  
   })
 
-    $("#prova").change(function(){
-        console.log('aq');
-        console.log($("#materia").val());
-        console.log($('#turma').val());
-        console.log($('#periodo').val());
+    $("#ano").change(function(){
+
+        let turma = $("#turma").val();
+        let mes = $('#mes').val();
+        let data = $('#data').val();
+        console.log(data);
+        let ano = $('#ano').val();
         if( $("#materia").val() == 'Selecione' || $('#turma').val() == 'Selecione' || $('#periodo').val() == 'Selecione' || $('#prova').val() == 'Selecione'){
             console.log('aq12');
         }else{
-            carregaAlunos($('#turma').val());
+            carregaAlunos(turma, ano, data);
             //$('#tabela').reload();
             $('#tabela').show(500);
         }
     });
 
-    function carregaAlunos(turma){
+    function carregaAlunos(turma, ano, data){
         $.ajax({
-            url: '/ambienteEscolar/getAlunos/' + turma,
+            url: '/ambienteEscolar/getFrequencias/' + turma + '/' + ano + '/' + data,
             type: 'GET',
             success: function(response){
-                console.log(response.length);
+                console.log(response.alunos[0].nome);
                 insereValores(response);
             },
             error:function(response){
@@ -169,18 +175,28 @@
 
     function insereValores(response){
         $('#tab').empty();
-        for(let i = 0; i < response.length; i++)
+        for(let i = 0; i < response.frequencias.length; i++)
         {
-            var newRow = $("<tr>");
-            var cols = "";
-            cols += '<td>' + (i+1) + '</td>';
-            cols += '<td>' + response[i].matricula + '</td>';
-            cols += '<td>' + response[i].nome + '</td><td> - </td>';
-            cols += '<td>' +"<input type='checkbox' class='form-control' style='border:1px solid gray; width:70px;' name='"+response[i].matricula+"' id='"+response[i].matricula+"'" +'</td></tr>';
+            for(let j = 0; j < response.alunos.length; j++){
+                if(response.frequencias[i].id_aluno == response.alunos[j].id){
 
-            newRow.append(cols);
+                    var newRow = $("<tr>");
+                    var cols = "";
+                    cols += '<td>' + (i+1) + '</td>';
+                    cols += '<td>' + response.alunos[j].matricula + '</td>';
+                    cols += '<td>' + response.alunos[j].nome + '</td>'
+                    //cols += '<td>'+ response.frequencias[i].data+'</td>';
 
-            $("#tab").append(newRow);
+                    
+                    let situacao = response.frequencias[i].falta == 0 ? 'Falta' : 'Presença';
+
+                    cols += '<td>'+ situacao +'</td></tr>';
+
+                    newRow.append(cols);
+
+                    $("#tab").append(newRow);       
+                }
+            }
 
         }
     }
