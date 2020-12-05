@@ -23,7 +23,7 @@ Route::prefix('/ambienteEscolar')->group(function(){
 
 	Route::get('/getFrequencias/{turma}/{ano}/{data}' , [FrequenciaController::class, 'getFrequencias'])->name('getFrequencias');
 	Route::get('/getAlunos/{turma}' , [AlunoController::class, 'getAlunos'])->name('getAlunos');
-	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}' , [AvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
+	Route::get('/getAvaliacoes/{turma}/{periodo}/{materia}/{prova}' , [AvaliacaoController::class, 'getAvaliacoes'])->name('getAvaliacoes');
 
 	Route::prefix('/frequencias')->group(function(){
 		Route::get('/' , [EAController::class, 'frequencias'])->name('frequencias');
@@ -47,6 +47,7 @@ Route::prefix('/ambienteEscolar')->group(function(){
 
 	Route::prefix('/avaliacoes')->group(function(){
 		Route::get('/' , [EAController::class, 'avaliacoes'])->name('avaliacoes');
+		Route::get('/boletim/{id}' , [AvaliacaoController::class, 'relatorio'])->name('boletim');
 		Route::get('/cadastrar', [AvaliacaoController::class , 'cadastrar'])->name('avaliacoes.cadastrar');
 		Route::get('/listar', [AvaliacaoController::class , 'listar'])->name('avaliacoes.listar');
 		Route::get('/editar/{id}', [AvaliacaoController::class , 'editar'])->name('avaliacoes.editar');

@@ -42,7 +42,7 @@
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
-                <a class="btn" href="{{ route('materias')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
+                <a class="btn" href="{{ route('avaliacoes.listar')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
             </div>
             <br>
         </header>
@@ -92,12 +92,6 @@
                                         <option value="n2">N2</option>
                                         <option value="n3">N3</option>
                                         <option value="n4">N4</option>
-                                        <option value="n5">N5</option>
-                                        <option value="n6">N6</option>
-                                        <option value="n7">N7</option>
-                                        <option value="n8">N8</option>
-                                        <option value="n9">N9</option>
-                                        <option value="n10">N10</option>
                                         <option value="recuperacao">Recuperação</option>
 
                                     </select>

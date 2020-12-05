@@ -166,7 +166,7 @@
 
     function carregaAlunos(turma, periodo, materia, nota){
         $.ajax({
-            url: '/ambienteEscolar/getAvaliacoes/' + turma +'/'+ periodo+'/'+ materia,
+            url: '/ambienteEscolar/getAvaliacoes/' + turma +'/'+ periodo+'/'+ materia + '/' + nota,
             type: 'GET',
             success: function(response){
                 console.log(response);
@@ -183,41 +183,32 @@
     function insereValores(response,nota){
         $('#tab').empty();
         for(let i = 0; i < response.avaliacoes.length; i++)
-            {   var aluno = "";
-        var cols = "";
-        var newRow = $("<tr>");
-        cols += '<td>' + (i+1) + '</td>';
+        {   
+            var aluno = "";
+            var cols = "";
+            var aux = "";
+            var newRow = $("<tr>");
+            cols += '<td>' + (i+1) + '</td>';
 
-        for(let j = 0; j < response.alunos.length; j++){
-            if(response.avaliacoes[i].id_aluno == response.alunos[j].id){
-                aluno = response.alunos[i].id;
-                cols += '<td>' + response.alunos[i].matricula+ '</td>';
-                cols += '<td>' + response.alunos[i].nome + '</td>';
+            for(let j = 0; j < response.alunos.length; j++){
+                if(response.avaliacoes[i].id_aluno == response.alunos[j].id){
+                    cols += '<td>' + response.alunos[i].matricula+ '</td>';
+                    cols += '<td>' + response.alunos[i].nome + '</td>';
+                    aux += '<td>' +'<a href="/ambienteEscolar/avaliacoes/boletim/' + response.alunos[i].id +'"> <i class="fa fa-file"></i>' + '</a></td></tr>';
+                }
             }
-        }
 
 
-        switch(nota){
-            case "n1":
-            cols += '<td>' + response.avaliacoes[i].n1 + '</td>';break;
-            case "n2":
-            cols += '<td>' + response.avaliacoes[i].n2 + '</td>';break;
-            case "n3":
-            cols += '<td>' + response.avaliacoes[i].n3 + '</td>';break;
-            case "n4":
-            cols += '<td>' + response.avaliacoes[i].n4 + '</td>';break;
-            default:break;
+            cols += '<td>' + response.avaliacoes[i].nota + '</td>';
+            cols += aux;
+
+
+            newRow.append(cols);
+
+            $("#tab").append(newRow);
 
         }
-        cols += '<td>' +'<a href="/ambienteEscolar/avaliacoes/boletim/' + aluno +'"> <i class="fa fa-file"></i>' + '</a></td></tr>';
-
-
-        newRow.append(cols);
-
-        $("#tab").append(newRow);
-
     }
-}
 </script>
 </html>
 
