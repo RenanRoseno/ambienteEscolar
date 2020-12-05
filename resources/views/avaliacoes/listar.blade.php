@@ -110,6 +110,7 @@
                                     <th>Matricula</th>
                                     <th>Aluno</th>
                                     <th>Nota</th>
+                                    <th>Ações</th>
                                     <!--th>Situação</th-->
                                     <!--th colspan="3"></th-->
                                 </thead>
@@ -157,19 +158,19 @@
         if( $("#materia").val() == 'Selecione' || $('#turma').val() == 'Selecione' || $('#periodo').val() == 'Selecione' || $('#prova').val() == 'Selecione'){
             console.log('aq12');
         }else{
-            carregaAlunos($('#turma').val(), $('#periodo').val() , $('#materia').val());
+            carregaAlunos($('#turma').val(), $('#periodo').val() , $('#materia').val(), $('#prova').val());
             //$('#tabela').reload();
             $('#tabela').show(500);
         }
     });
 
-    function carregaAlunos(turma, periodo, materia){
+    function carregaAlunos(turma, periodo, materia, nota){
         $.ajax({
             url: '/ambienteEscolar/getAvaliacoes/' + turma +'/'+ periodo+'/'+ materia,
             type: 'GET',
             success: function(response){
-                console.log(response.length);
-                insereValores(response);
+                console.log(response);
+                insereValores(response, nota);
             },
             error:function(response){
                 console.log(0);
@@ -179,22 +180,44 @@
 
     }
 
-    function insereValores(response){
+    function insereValores(response,nota){
         $('#tab').empty();
-        for(let i = 0; i < response.length; i++)
-        {
-            var newRow = $("<tr>");
-            var cols = "";
-            cols += '<td>' + (i+1) + '</td>';
-            cols += '<td>' + response[i].id + '</td>';
-            cols += '<td>' + response[i].id_aluno + '</td></tr>';
+        for(let i = 0; i < response.avaliacoes.length; i++)
+            {   var aluno = "";
+        var cols = "";
+        var newRow = $("<tr>");
+        cols += '<td>' + (i+1) + '</td>';
 
-            newRow.append(cols);
+        for(let j = 0; j < response.alunos.length; j++){
+            if(response.avaliacoes[i].id_aluno == response.alunos[j].id){
+                aluno = response.alunos[i].id;
+                cols += '<td>' + response.alunos[i].matricula+ '</td>';
+                cols += '<td>' + response.alunos[i].nome + '</td>';
+            }
+        }
 
-            $("#tab").append(newRow);
+
+        switch(nota){
+            case "n1":
+            cols += '<td>' + response.avaliacoes[i].n1 + '</td>';break;
+            case "n2":
+            cols += '<td>' + response.avaliacoes[i].n2 + '</td>';break;
+            case "n3":
+            cols += '<td>' + response.avaliacoes[i].n3 + '</td>';break;
+            case "n4":
+            cols += '<td>' + response.avaliacoes[i].n4 + '</td>';break;
+            default:break;
 
         }
+        cols += '<td>' +'<a href="/ambienteEscolar/avaliacoes/boletim/' + aluno +'"> <i class="fa fa-file"></i>' + '</a></td></tr>';
+
+
+        newRow.append(cols);
+
+        $("#tab").append(newRow);
+
     }
+}
 </script>
 </html>
 

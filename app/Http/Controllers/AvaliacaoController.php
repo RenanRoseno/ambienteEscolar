@@ -15,8 +15,9 @@ use App\Models\Professores;
 class AvaliacaoController extends Controller
 {
     public function getAvaliacoes($turma, $periodo, $materia){
+        $alunos = Aluno::all();
         $avaliacoes = Avaliacao::where('id_periodo', $periodo)->where('id_materia', $materia)->get();
-        return $avaliacoes;
+        return compact('avaliacoes', 'alunos');
 
     }
     public function cadastrar(){
