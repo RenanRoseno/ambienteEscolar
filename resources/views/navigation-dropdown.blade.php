@@ -22,13 +22,30 @@
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
 
+                    @if(Auth::user()->role_id == 1)
+                    
+                    <x-jet-nav-link href="/ambienteEscolar/avaliacoes/boletim/{{Auth::user()->id_usuario}}" :active="request()->routeIs('frequencias') || request()->routeIs('frequencias.cadastrar')">
+                        {{ __('Frequências') }}
+                    </x-jet-nav-link>
+
+                    @else
                     <x-jet-nav-link href="{{ route('frequencias') }}" :active="request()->routeIs('frequencias') || request()->routeIs('frequencias.cadastrar')">
                         {{ __('Frequências') }}
                     </x-jet-nav-link>
+                    @endif
+
+                    @if(Auth::user()->role_id == 1)
                     
+                    <x-jet-nav-link href="/ambienteEscolar/avaliacoes/boletim/{{Auth::user()->id_usuario}}" :active="request()->routeIs('frequencias') || request()->routeIs('frequencias.cadastrar')">
+                        {{ __('Frequências') }}
+                    </x-jet-nav-link>
+
+                    @else
+
                     <x-jet-nav-link href="{{ route('avaliacoes') }}" :active="request()->routeIs('avaliacoes') || request()->routeIs('avaliacoes.cadastrar') || request()->routeIs('avaliacoes.listar')"> 
                         {{ __('Avaliações') }}
                     </x-jet-nav-link>
+                    @endif
                     @if(Auth::user()->role_id > 1 || Auth::user()->role_id == null )
                     <x-jet-nav-link href="{{ route('materias') }}" :active="request()->routeIs('materias') || request()->routeIs('materias.cadastrar')">
                         {{ __('Matérias') }}

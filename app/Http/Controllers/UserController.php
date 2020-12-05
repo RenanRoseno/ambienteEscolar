@@ -11,6 +11,12 @@ use App\Models\Professores;
 
 class UserController extends Controller
 {
+    public function delete($id){
+        $usuario = Usuario::find($id);
+        if($usuario->delete()){
+            return redirect()->route('usuarios')->with('success', ' ');
+        }
+    }
     public function cadastrar(){
         $turmas = Turma::all();
         $matricula = date("Y").Aluno::orderBy('id', 'DESC')->first()->id;
@@ -60,7 +66,7 @@ class UserController extends Controller
      $user->role_id = $req->tipo;
 
      if($user->save() && $retorno == 1){
-      return redirect()->route('usuarios');
+      return redirect()->route('usuarios')->with('success', ' ');
   }
     	//$user->name = $req
 }

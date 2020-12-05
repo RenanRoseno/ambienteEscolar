@@ -42,7 +42,7 @@
             </div>
 
             <div style="margin-left: 82%; margin-top: -60px;">
-                <a class="btn" href="{{ route('materias')}}"><i class="fa fa-list"></i>&nbsp;Listar</a>
+                <a class="btn" href="{{ route('avaliacoes.cadastrar')}}"><i class="fa fa-plus"></i>&nbsp;Cadastrar</a>
             </div>
             <br>
         </header>
@@ -127,13 +127,6 @@
                 </div>
             </div>
         </div>
-
-        @if(session('error'))
-        <script type="text/javascript" defer>erro()</script>
-        @endif
-        @if(session('success'))
-        <script type="text/javascript" defer>sucessos()</script>
-        @endif
     </main>
 </div>
 
@@ -197,7 +190,6 @@
                     aux += '<td>' +'<a href="/ambienteEscolar/avaliacoes/boletim/' + response.alunos[i].id +'"> <i class="fa fa-file"></i>' + '</a></td></tr>';
                 }
             }
-
 
             cols += '<td>' + response.avaliacoes[i].nota + '</td>';
             cols += aux;

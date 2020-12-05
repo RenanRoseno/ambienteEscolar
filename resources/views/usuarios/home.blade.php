@@ -80,8 +80,8 @@
                             <td>{{$usuario->email}}</td>
                             <td>{{$usuario->role_id}}</td>
                             <td>
-                                <a href="#"class="btn btn-md" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
-                                <a href="#"class="btn btn-md" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash lg"></i></a>
+                                
+                                <a href="/ambienteEscolar/usuarios/excluir/{{$usuario->id}}"class="btn btn-md" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash lg"></i></a>
                             </td> 
                         </tr> 
                         @empty

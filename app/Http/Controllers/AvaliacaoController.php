@@ -81,9 +81,9 @@ class AvaliacaoController extends Controller
 
 
             if($avaliacao->save()){
-                echo "1";
+                return redirect()->route('avaliacoes.listar')->with("success", "Sucesso ao cadastrar");
             }else{
-                echo "0"; break;
+                 return redirect()->with("error", "Erro ao cadastrar");
             }
         }
         

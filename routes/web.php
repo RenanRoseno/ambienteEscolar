@@ -81,7 +81,7 @@ Route::prefix('/ambienteEscolar')->group(function(){
 		Route::get('/' , [EAController::class, 'usuarios'])->name('usuarios');
 		Route::get('/cadastrar', [UserController::class , 'cadastrar'])->name('usuarios.cadastrar');
 		Route::get('/editar/{id}', [UserController::class , 'editar'])->name('usuarios.editar');
-		Route::get('/excluir/{id}', [UserController::class , 'excluir'])->name('usuarios.excluir');
+		Route::get('/excluir/{id}', [UserController::class , 'delete'])->name('usuarios.excluir');
 		Route::post('/inserir', [UserController::class , 'inserir'])->name('usuarios.inserir');
 		Route::post('/salvar', [UserController::class , 'salvar'])->name('usuarios.salvar');
 	});

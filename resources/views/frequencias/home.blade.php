@@ -188,7 +188,7 @@
                     //cols += '<td>'+ response.frequencias[i].data+'</td>';
 
                     
-                    let situacao = response.frequencias[i].falta == 0 ? 'Falta' : 'Presença';
+                    let situacao = response.frequencias[i].falta == 0 ? 'Presença' : 'Falta';
 
                     cols += '<td>'+ situacao +'</td></tr>';
 
